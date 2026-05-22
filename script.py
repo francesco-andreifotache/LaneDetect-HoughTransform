@@ -121,9 +121,13 @@ optiune = input("Alegeți opțiunea (1 sau 2): ").strip()
 current_mode = 'easy'
 
 if optiune == '1':
-    cale_foto = input("Introduceți calea către poză (sau Enter pentru implicit './test-images/t1.png'): ").strip()
+    cale_foto = input("Introduceți numele pozei (ex: TestR1.jpeg) sau Enter pentru implicit: ").strip()
+    
     if not cale_foto:
-        cale_foto = './test-images/t1.png'
+        cale_foto = './test-images/img_1.png'
+    else:
+        # Adaugă automat folderul test-images/ în fața numelui pe care l-ai scris
+        cale_foto = f'./test-images/{cale_foto}'
 
     img_statica = cv2.imread(cale_foto)
     if img_statica is None:
@@ -152,9 +156,13 @@ if optiune == '1':
             break
 
 elif optiune == '2':
-    cale_video = input("Introduceți calea către video (sau Enter pentru implicit './test-images/test1.mp4'): ").strip()
+    cale_video = input("Introduceți numele videoclipului (ex: test1.mp4) sau Enter pentru implicit: ").strip()
+    
     if not cale_video:
         cale_video = './test-images/test1.mp4'
+    else:
+        # Adaugă automat folderul test-images/ în fața numelui
+        cale_video = f'./test-images/{cale_video}'
 
     cap = cv2.VideoCapture(cale_video)
     if not cap.isOpened():
